@@ -1,0 +1,8 @@
+.counterContainer{
+  background-color: white;
+  min-width: 20dvw;
+  min-height: 20dvh;
+}
+.counterContainer h2,.counterContainer p{
+  color: black ;
+}
