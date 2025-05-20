@@ -1,32 +1,74 @@
-import * as yup from "yup";
+import  * as yup from 'yup';
 
 const schema = yup.object({
-  nombre: yup
-    .string()
-    .required("El campo es obligatorio")
-    .min(3, "El nombre como minimo debe tener 3 caracteres")
-    .max(50, "El nombre es demasiado largo")
-    // eslint-disable-next-line no-useless-escape
-    .matches("^[a-zA-Zs]+$", "solo se permiten letras y espacios"),
+    nombre: yup
+        .string()
+        .required('El campo del nombre es obligatorio')
+        .min(3,'Longitud minima de 3 caracteres')
+        .max(50,'el maximo de caracteres ha de ser 50')
+        .matches(/^[a-zA-z\s]+$/,'Solo se permiten letras y espacios'),
 
-  email: yup
-    .string()
-    .required("El email es  obligatioio")
-    .email("Ingresa un forrmato de email válido"),
+    email:  yup
+        .string()
+        .required('el Email es obligatorio')
+        .email('Ingesa un formato de email válido'),
+        
+    edad: yup
+        .number()
+        .required('')
+        .min(18,'')
+        .max(120,''),
+    
+    password: yup
+        .string()
+        .required('')
+        .min(8,'')
+        .max(50,'')
+        .matches(/[A-Z]/,'mayuscula')
+        .matches(/[a-z]/,'minuscula')
+        .matches(/[0-9]/,'numero')
+        .matches(/[^A-Za-z0-9]/,'Debe tener un caracter especial'),
 
-  fechaNacimieto: yup
-    .date()
-    .required("La fecha es obligatoria")
-    .max(new Date(), "La fecha no puede ser futura")
-    .test("edad-minima", "Debes de tene almeno 18 años", (value) => {
-      const fechaActual = new Date();
-      const fechaMinima = new Date(
-        fechaActual.getFullYear() - 18,
-        fechaActual.getMonth(),
-        fechaActual.getDate()
-      );
-      return value <= fechaMinima;
-    }),
-});
 
-export default schema;
+    confirmPassword: yup
+        .string()
+        .required('')
+        .oneOf([yup.ref('password')],'Las contraseñas no coinciden'),
+    
+    fechaNacimineto: yup
+        .date()
+        .required('')
+        .max(new Date(),'no puede ser un fecha furura')
+        .test(
+            'edad-minima',
+            'Debes de ser mayor de edad',
+            value =>{
+                const hoy = new Date();
+                const fechaMinima = new Date(
+                    hoy.getFullYear() -18,
+                    hoy.getMonth(),
+                    hoy.getDate()
+                );
+                return value <= fechaMinima;
+            }
+        ),
+    website: yup
+        .string()
+        .test(
+            'url-schema',
+            'la url ha de comenzar con https://',
+            value => !value || value.startsWith('https://')
+        ),
+    
+    aceptarTerminos: yup
+        .boolean()
+        .oneOf([true],'Debes deaceptar los terminos')
+        .required('debes de aceptar los terminos'),
+    
+    pais: yup
+        .string()
+        .required('')
+        .oneOf(['MX','ES','CO','AR']),
+
+})
+export default schema

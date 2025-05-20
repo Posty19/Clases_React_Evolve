@@ -1,8 +1,14 @@
-import Form from "./components/form/Form";
-import "./App.css";
+import Form from './Components/Form/Form'
+import './App.css'
 
 function App() {
-  return <Form />;
+  
+
+  return (
+    <>
+      <Form/>
+    </>
+  )
 }
 
-export default App;
+export default App

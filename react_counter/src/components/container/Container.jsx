@@ -1,19 +1,19 @@
 import { useState } from "react";
-
-import Counter from "../counter/Counter";
-import "./container.css";
+import Counter from "../Counter/Counter";
 
 const Container = () => {
   const [show, setShow] = useState(false);
-
   return (
-    <div className="container">
-      <h1>Panel del contador</h1>
-      <button onClick={() => setShow((prev) => !prev)} className="toggleButton">
-        {show ? "Ocultar Contador" : "Mosatrar Contador"}
+    <>
+      <h1>Panel Contador</h1>
+      <button onClick={() => setShow((prev) => !prev)}>
+        {show ? "ocultar contador" : "Mostar contador"}
       </button>
       {show && <Counter/>}
-    </div>
+      {show && <Counter init={9}/>}
+      {show && <Counter init={-2}/>}
+      {show && <Counter init={7}/>}
+    </>
   );
 };
 
