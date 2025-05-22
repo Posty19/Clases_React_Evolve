@@ -11,6 +11,7 @@ import About from "./views/About/About";
 
 function App() {
   return (
+    //counter provider engloba a todo 
     <Router>
       <div className="main-container">
         <Navbar/>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/About" element={<About/>}/>
           <Route path="/Contact" element={<Contact/>}/>
           <Route path="/Counter" element={<Counter/>}/>
+          {/* ruta del 404 */}
         </Routes>
         <Footer/>
       </div>
