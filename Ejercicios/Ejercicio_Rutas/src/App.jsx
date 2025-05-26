@@ -7,24 +7,26 @@ import Home from "./views/Home/home";
 import Counter from "./views/Counter/Counter";
 import Contact from "./views/Contact/Contact";
 import About from "./views/About/About";
-
+import { CounterProvider } from "./contexts/CounterContext";
 
 function App() {
   return (
-    //counter provider engloba a todo 
-    <Router>
-      <div className="main-container">
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/About" element={<About/>}/>
-          <Route path="/Contact" element={<Contact/>}/>
-          <Route path="/Counter" element={<Counter/>}/>
-          {/* ruta del 404 */}
-        </Routes>
-        <Footer/>
-      </div>
-    </Router>
+    //counter provider engloba a todo
+    <CounterProvider>
+      <Router>
+        <div className="main-container">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/Counter" element={<Counter />} />
+            {/* ruta del 404 */}
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </CounterProvider>
   );
 }
 
